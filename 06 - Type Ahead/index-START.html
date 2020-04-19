@@ -23,6 +23,8 @@ fetch(endpoint)
   .then(blob => blob.json())
   .then(data => cities.push(...data));
 
+
+
   function findMatches(wordToMatch, cities) {
     return cities.filter(place => {
       //here we need to fingure out if the city or state matches what was searched
@@ -35,14 +37,21 @@ fetch(endpoint)
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
+
+
   function displayMatches() {
+    // 入力された値とマッチする年を代入
     const matchArray = findMatches(this.value, cities);
+
+    // const matchArray = this.value.match(cities);
     const html = matchArray.map(place => {
 
       // highlight the word what was searched
       const regex = new RegExp(this.value, 'gi');
+      // 通常の文字列をCSSで加工したspan要素の中に入れて再代入
       const cityName = place.city.replace(regex, `<span city="hl">${this.value}</span>`);
       const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+
 
       return `
         <li>
@@ -50,9 +59,14 @@ fetch(endpoint)
           <span class="population">${numberWithCommas(place.population)}</span>
         </li>
         `;
+
+
+    // map関数は連結した配列要素を","で連結して返す。下記のjoinで","を打ち消している。もしjoinメソッドを使用しないと<li></li>の間に","が入り込む
     }).join('');
     suggestions.innerHTML = html;
   }
+
+
 
   const searchInput = document.querySelector('.search');
   const suggestions = document.querySelector('.suggestions');
