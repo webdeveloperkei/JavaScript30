@@ -18,29 +18,73 @@
     }
 
     // Regular
+    console.log('hello');
 
-    // Interpolated
+    // Interpolated...%sと書いた場所に第二引数に記述した文字列が入る。
+    console.log('Hello I am %s string!', "Hello World");
 
-    // Styled
+    // Styled...%cを文字列の前に入れて第二引数にスタイルを記述すると適用される。
+    console.log('%c I am some great text', 'font-size:50px; background:red; text-shadow: 10px 10px 0 blue');
 
     // warning!
+    console.warn('Oh Nooo');
 
     // Error :|
+    console.error('Shit!');
 
     // Info
+    console.info('Crocodiles eat 3-4 people per year');
 
     // Testing
+    // var hogehoge = 'Right';
+    // var hogehoge2 = 'Right';
+    // var hogehoge2 = 'False';
+    // console.assert(hogehoge === hogehoge2, 'That is wrong');
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('ouch'), 'That is wrong!');
 
     // clearing
+    // console.clear();
 
-    // Viewing DOM Elements
+    // Viewing DOM Elements...console.logはエレメントを表示、console.dirはデータセット(プロパティやメソッド)を表示する。
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
-
+    // dogs.forEach(dog => {
+      // console.groupCollapsedにするとタブ整形がなくなる。
+    //   console.groupCollapsed(`${dog.name}`);
+    //   console.log(`This is ${dog.name}`);
+    //   console.log(`${dog.name} is ${dog.age} years old`);
+    //   console.group(`${dog.name}`);
+    // });
+    
     // counting
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
 
     // timing
+    console.time('fetching data');
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
 
+    // table
+    console.table(dogs);
+    
   </script>
 </body>
 </html>
